@@ -4,7 +4,7 @@ FROM python:3.8.16-slim
 # what code and docs
 # COPY local_dir container_dir
 # COPY ./src/requirements.txt /app/requirements.txt
-COPY ./src /app/
+COPY . /app
 WORKDIR /app/
 
 # default installs
@@ -25,6 +25,9 @@ RUN python3 -m venv /opt/venv && \
 RUN apt-get remove -y --purge make gcc build-essential \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
+
+# make entrypoint executable
+RUN chmod +x entrypoint.sh
 
 # run the app
 CMD ["./entrypoint.sh"]
