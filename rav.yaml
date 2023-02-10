@@ -1,0 +1,5 @@
+scripts:
+  runserver: uvicorn src.main:app --reload
+  test: pytest .
+  build: docker build
+  push: docker push
