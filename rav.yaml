@@ -2,5 +2,7 @@ scripts:
   runserver: uvicorn src.main:app --reload
   installs: venv/bin/python -m pip install -r requirements.txt
   test: pytest src/tests.py
-  build: docker build
+  build: docker build -f Dockerfile -t serverless-py .
+  empty-build: docker build -f Dockerfile.empty -t empty-py .
+  empty-run: docker run -p 8000:8000 -it empty-py
   push: docker push
