@@ -1,3 +1,6 @@
+.git/
+Dockerfile
+Dockerfile.empty
 README.md
 
 # Byte-compiled / optimized / DLL files

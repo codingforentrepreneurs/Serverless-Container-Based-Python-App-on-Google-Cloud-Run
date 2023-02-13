@@ -4,5 +4,6 @@ scripts:
   test: pytest src/tests.py
   build: docker build -f Dockerfile -t serverless-py .
   empty-build: docker build -f Dockerfile.empty -t empty-py .
-  empty-run: docker run -p 8000:8000 -it empty-py
+  empty-shell: docker exec -it empty_py /bin/bash
+  empty-run: docker run -p 8000:8000 --name empty_py -it empty-py
   push: docker push
