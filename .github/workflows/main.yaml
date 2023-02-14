@@ -8,6 +8,8 @@ on:
       - "18-end"
       - "19-start"
       - "19-end"
+      - "20-start"
+      - "20-end"
       - "master"
 
 
@@ -49,13 +51,13 @@ jobs:
         run: |
             docker build -f Dockerfile -t inline-docker-tag .
             docker tag inline-docker-tag ${{ secrets.CONTAINER_IMAGE_URL }}:latest
-            docker tag inline-docker-tag ${{ secrets.CONTAINER_IMAGE_URL }}:v1
+            docker tag inline-docker-tag ${{ secrets.CONTAINER_IMAGE_URL }}:${GITHUB_RUN_ID}
             gcloud auth configure-docker ${{ secrets.GCLOUD_REGION }}-docker.pkg.dev
             docker push ${{ secrets.CONTAINER_IMAGE_URL }} --all-tags
       - name: Deploy container to Cloud Run
         run: |
             gcloud run deploy serverless-py-run \
-              --image=${{ secrets.CONTAINER_IMAGE_URL }}:latest \
+              --image=${{ secrets.CONTAINER_IMAGE_URL }}:${GITHUB_RUN_ID} \
               --allow-unauthenticated \
               --region=${{ secrets.GCLOUD_REGION }} \
               --project=${{ secrets.GCLOUD_PROJECT_ID }}
