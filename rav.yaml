@@ -21,3 +21,5 @@ scripts:
     - docker tag serverless-py-amd64 us-central1-docker.pkg.dev/cfe-serverless-py-2023/serverless-py-repo/serverless-py:v1
     - docker tag serverless-py-amd64 us-central1-docker.pkg.dev/cfe-serverless-py-2023/serverless-py-repo/serverless-py:v1.120
     - docker push us-central1-docker.pkg.dev/cfe-serverless-py-2023/serverless-py-repo/serverless-py --all-tags
+  deploy:
+    - gcloud run deploy serverless-py-run --image=us-central1-docker.pkg.dev/cfe-serverless-py-2023/serverless-py-repo/serverless-py:latest --allow-unauthenticated --region=us-central1 --project=cfe-serverless-py-2023
