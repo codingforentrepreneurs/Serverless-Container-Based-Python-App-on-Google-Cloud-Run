@@ -11,5 +11,5 @@ def test_get_home_status():
     response = client.get(path)
     status_code = response.status_code
     content_type = response.headers['content-type']
-    assert status_code == 201 # HTTP response
+    assert status_code == 200 # HTTP response
     assert content_type == "application/json"
