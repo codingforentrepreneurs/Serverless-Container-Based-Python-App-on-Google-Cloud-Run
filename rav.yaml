@@ -25,3 +25,7 @@ scripts:
     - docker push us-central1-docker.pkg.dev/cfe-serverless-py-2023/serverless-py-repo/serverless-py --all-tags
   deploy:
     - gcloud run deploy serverless-py-run --image=us-central1-docker.pkg.dev/cfe-serverless-py-2023/serverless-py-repo/serverless-py:latest --allow-unauthenticated --region=us-central1 --project=cfe-serverless-py-2023
+  cloud_run_perms:
+    - gcloud secrets add-iam-policy-binding py_env_file --member='serviceAccount:60927173241-compute@developer.gserviceaccount.com' --role='roles/secretmanager.secretAccessor'
+  cloud_run_perms_remove:
+    - gcloud secrets remove-iam-policy-binding py_env_file --member='serviceAccount:60927173241-compute@developer.gserviceaccount.com' --role='roles/secretmanager.secretAccessor'
