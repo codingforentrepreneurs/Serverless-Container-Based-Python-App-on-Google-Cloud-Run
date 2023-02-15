@@ -9,6 +9,8 @@ scripts:
   container_stage: docker run -e MODE=stage -p 8000:8000 --rm --name serverless-py -it serverless-py
   container_prod: docker run -e PORT=8001  -e MODE=PRODA --env-file .env-prod  -p 8000:8001 --rm --name serverless-py -it serverless-py
   run: docker run --env-file .env-prod -p 8000:8000 --rm --name serverless-py -it serverless-py
+  update_prod_secrets:
+    - gcloud secrets versions add py_env_file --data-file .env-prod
   build_run:
     - rav run build
     - rav run run
