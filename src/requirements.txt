@@ -4,3 +4,5 @@ uvicorn
 python-decouple
 pytest
 httpx
+google-auth
+google-cloud-secret-manager
